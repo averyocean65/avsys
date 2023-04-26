@@ -1,0 +1,5 @@
+iso/boot/avsys.bin
+*.iso
+
+obj/
+bin/
