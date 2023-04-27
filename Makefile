@@ -15,7 +15,7 @@ ISOFILE=bin/avsys.iso
 
 SRCS=$(shell find $(SRCDIR) -name '*.c' -o -name '*.asm')
 OBJS=$(patsubst $(SRCDIR)/%.c,$(BUILDDIR)/%.o,$(patsubst $(SRCDIR)/%.asm,$(BUILDDIR)/%.o,$(SRCS)))
-DIRS=$(sort $(dir $(OBJS)))
+DIRS=$(sort $(dir $(OBJS))) bin obj $(BOOTDIR)/grub
 
 .PHONY: all
 
@@ -46,6 +46,7 @@ $(ISOFILE): $(BINFILE)
 
 clean:
 	rm -rf $(BUILDDIR) $(BINFILE) $(ISOFILE)
+	rm -rf bin obj
 
 run:
 	qemu-system-x86_64 $(ISOFILE)
