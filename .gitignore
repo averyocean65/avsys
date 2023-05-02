@@ -3,3 +3,5 @@ iso/boot/avsys.bin
 
 obj/
 bin/
+
+.vscode/
