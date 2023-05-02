@@ -69,4 +69,18 @@ void write_serial_str(const char* str, uint16_t port) {
     }
 }
 
+void notify_func_entry(const char* func, const uint16_t port) {
+    char* msg = "ENTERING FUNCTION:\t";
+    write_serial_str(msg, port);
+    write_serial_str(func, port);
+    write_serial_str("\r\n", port);
+}
+
+void notify_func_exit(const char* func, const uint16_t port) {
+    char* msg = "EXITING FUNCTION:\t";
+    write_serial_str(msg, port);
+    write_serial_str(func, port);
+    write_serial_str("\r\n", port);
+}
+
 #endif

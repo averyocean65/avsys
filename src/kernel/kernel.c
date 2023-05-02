@@ -1,9 +1,11 @@
 #include <stdint.h>
 #include "vga/text/terminal.h"
-
-#include "functions/utils.h"
-
 #include "serial.h"
+#include "panic.h"
+#include "memory/paging/paging.h"
+#include "sysinfo.h"
+
+#include "../gnu/multiboot.h"
 
 #define SERIAL_PORT (uint16_t)COM1
 
@@ -11,41 +13,58 @@ int init_serial_default() {
     return init_serial(SERIAL_PORT);
 }
 
-void kernel_early_main() {
+void kernel_early_main(multiboot_info_t* mbd, uint32_t magic) {
     init_terminal();
+
+    // Make sure the magic number is correct
+    if(magic != MULTIBOOT_BOOTLOADER_MAGIC) {
+        char buffer[16];
+
+        itoa(magic, buffer);
+
+        printf(buffer);
+        printf("\n");
+
+        itoa(MULTIBOOT_BOOTLOADER_MAGIC, buffer);
+        printf(buffer);
+
+        panic("Invalid magic number!");
+    }
+
+    // Define SYS_MBD
+    #define SYS_MBD mbd
 
     int serial = init_serial(SERIAL_PORT);
     if(serial == 1) {
-        printf_color("ERROR: Failed to initialize serial I/O at COM1", VGA_COLOR_LIGHT_RED, VGA_COLOR_BLACK);
+        panic("Failed to initialize serial at I/O (COM1)");
     }
 
     write_serial_str("SERIAL INITIALIZED\r\n", SERIAL_PORT);
 }
 
-void my_epic_function(void) { }
-
 void kernel_main() {
-    write_serial_str("KERNEL_MAIN START\r\n", SERIAL_PORT);
+    char* func_name = "";
+    GET_VAR_NAME(func_name, kernel_main);
 
-    printf("Welcome to my Operating System!\n");
-    printf_color("Wow! ", VGA_COLOR_LIGHT_RED, VGA_COLOR_BLACK);
-    printf_color("Colored text!\n", VGA_COLOR_LIGHT_GREEN, VGA_COLOR_BLACK);
-    printf_color("I can even change the background color!\n", VGA_COLOR_BLACK, VGA_COLOR_MAGENTA);
+    multiboot_info_t* mbd = SYS_MBD;
+    
 
-    printf("\nTesting ");
-    printf_color("GET_FUNCTION_NAME", VGA_COLOR_GREEN, VGA_COLOR_BLACK);
-    printf(" in ");
-    printf_color("functions/utils.h", VGA_COLOR_BLUE, VGA_COLOR_BLACK);
-    printf(":\n");
+    notify_func_entry(func_name, SERIAL_PORT);
 
-    char* buffer = "";
-    GET_FUNCTION_NAME(buffer, my_epic_function);
+    printf("Welcome to ");
+    printf_color(SYS_NAME, VGA_COLOR_LIGHT_MAGENTA, VGA_COLOR_BLACK);
+    printf("!\n");
 
-    printf(buffer);
-    write_serial_str("KERNEL_MAIN EXIT\r\n", SERIAL_PORT);
+    notify_func_exit(func_name, SERIAL_PORT);
 }
 
 void kernel_end() {
-    write_serial_str("KERNEL_END START\r\n", SERIAL_PORT);
-    write_serial_str("KERNEL_MAIN EXIT\r\n", SERIAL_PORT);
+    char* func_name = "";
+    GET_VAR_NAME(func_name, kernel_end);
+
+    notify_func_entry(func_name, SERIAL_PORT);
+
+    // printf("Kernel end\n");
+
+    notify_func_exit(func_name, SERIAL_PORT);
 }

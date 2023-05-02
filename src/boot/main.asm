@@ -136,7 +136,7 @@ gdt64:
 	dw $ - gdt64 - 1 ; length
 	dq gdt64 ; address
 
-; 64-BIT LONG MODE
+; 64-BIT ENTRY
 extern kernel_early_main
 extern kernel_main
 extern kernel_end
