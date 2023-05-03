@@ -5,34 +5,10 @@
 #include "memory/paging/paging.h"
 #include "sysinfo.h"
 
-#include "../gnu/multiboot.h"
-
 #define SERIAL_PORT (uint16_t)COM1
 
-int init_serial_default() {
-    return init_serial(SERIAL_PORT);
-}
-
-void kernel_early_main(multiboot_info_t* mbd, uint32_t magic) {
+void kernel_early_main() {
     init_terminal();
-
-    // Make sure the magic number is correct
-    if(magic != MULTIBOOT_BOOTLOADER_MAGIC) {
-        char buffer[16];
-
-        itoa(magic, buffer);
-
-        printf(buffer);
-        printf("\n");
-
-        itoa(MULTIBOOT_BOOTLOADER_MAGIC, buffer);
-        printf(buffer);
-
-        panic("Invalid magic number!");
-    }
-
-    // Define SYS_MBD
-    #define SYS_MBD mbd
 
     int serial = init_serial(SERIAL_PORT);
     if(serial == 1) {
@@ -44,17 +20,20 @@ void kernel_early_main(multiboot_info_t* mbd, uint32_t magic) {
 
 void kernel_main() {
     char* func_name = "";
-    GET_VAR_NAME(func_name, kernel_main);
-
-    multiboot_info_t* mbd = SYS_MBD;
-    
+    GET_VAR_NAME(func_name, kernel_main);    
 
     notify_func_entry(func_name, SERIAL_PORT);
 
     printf("Welcome to ");
-    printf_color(SYS_NAME, VGA_COLOR_LIGHT_MAGENTA, VGA_COLOR_BLACK);
-    printf("!\n");
-
+    printf_color("\n\
+   _|_|_|  _|      _|    _|_|_|  _|    _|    _|_|_|  \n\
+ _|    _|  _|      _|  _|_|      _|    _|  _|_|      \n\
+ _|    _|    _|  _|        _|_|  _|    _|      _|_|  \n\
+   _|_|_|      _|      _|_|_|      _|_|_|  _|_|_|    \n\
+                                       _|            \n\
+                                   _|_|              \n\
+", VGA_COLOR_LIGHT_MAGENTA, VGA_COLOR_BLACK);
+    
     notify_func_exit(func_name, SERIAL_PORT);
 }
 
@@ -64,7 +43,7 @@ void kernel_end() {
 
     notify_func_entry(func_name, SERIAL_PORT);
 
-    // printf("Kernel end\n");
+    /* Code */
 
     notify_func_exit(func_name, SERIAL_PORT);
 }

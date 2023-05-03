@@ -4,6 +4,7 @@
 #include <stddef.h>
 #include <stdint.h>
 
+#include "../../memory/memory.h"
 #include "../vga.h"
 #include "../../io.h"
 
@@ -38,7 +39,7 @@ void init_terminal() {
 
     color = vga_entry_color(VGA_COLOR_WHITE, VGA_COLOR_BLACK);
 
-    terminal_buffer = (uint16_t*)0xB8000;
+    terminal_buffer = (uint16_t*)VGA_ADDR;
     clear_terminal();
 }
 

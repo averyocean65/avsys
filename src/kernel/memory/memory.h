@@ -1,6 +1,10 @@
 #ifndef H_MEMORY
 #define H_MEMORY
 
+enum memory_address {
+    VGA_ADDR = 0xb8000,
+};
+
 static inline void __native_flush_tlb_single(unsigned long addr) {
    asm volatile("invlpg (%0)" ::"r" (addr) : "memory");
 }
