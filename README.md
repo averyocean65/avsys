@@ -15,3 +15,6 @@ My first (actual) Operating System
 3. ``make``
 4. If the compilation succeeds, ``make run``
 5. Enjoy!
+
+## Help
+If the compilation doesn't succeed, feel free to [open an issue](https://github.com/averyocean65/avsys/issues/new)!
