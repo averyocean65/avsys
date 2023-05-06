@@ -6,6 +6,7 @@ My first (actual) Operating System
 - [NASM](https://www.nasm.us/)
 - [xorriso](https://www.gnu.org/software/xorriso/)
 - [QEMU](https://www.qemu.org/)
+- [mtools](https://www.gnu.org/software/mtools/)
 - GNU Grub CLI toolchain
 
 ## Installing and building
