@@ -3,6 +3,8 @@ My first (actual) Operating System
 
 ## Prerequisites
 - [GNU Compiler Collection](https://gcc.gnu.org/)
+- [NASM](https://www.nasm.us/)
+- [xorriso](https://www.gnu.org/software/xorriso/)
 - [QEMU](https://www.qemu.org/)
 - GNU Grub CLI toolchain
 
