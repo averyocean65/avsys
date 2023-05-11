@@ -6,17 +6,7 @@ on:
   pull_request:
     branches: [ "main", "dev" ]
 
-jobs:
-  setup_deps:
-  
-    runs-on: ubuntu-latest
-    
-    steps:
-      - name: Install
-        run: |
-          apt-install nasm, xorriso, qemu, mtools, grub-common
-      
-  
+jobs:  
   build:
 
     runs-on: ubuntu-latest
