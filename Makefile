@@ -17,22 +17,23 @@ SRCS=$(shell find $(SRCDIR) -name '*.c' -o -name '*.asm')
 OBJS=$(patsubst $(SRCDIR)/%.c,$(BUILDDIR)/%.o,$(patsubst $(SRCDIR)/%.asm,$(BUILDDIR)/%.o,$(SRCS)))
 DIRS=$(sort $(dir $(OBJS))) bin obj $(BOOTDIR)/grub
 
-.PHONY: all check distcheck
+.PHONY: all
 
-all: $(BINFILE) copy_grub_cfg iso
+all: check distcheck $(BINFILE) copy_grub_cfg iso
 
 check:
 	@echo "Checking if required packages are installed..."
 	@./configure
 
 distcheck:
-    @echo "Running distribution checks..."
-    @if [ "$(OS)" = "Windows_NT" ]; then \
-        echo "Error: distcheck is not supported on Windows."; \
-        exit 1; \
-    fi
+	@echo "Running distribution checks"
 
-	@# Since the user is on Linux, everything should work fine.
+	@if [ "$(OS)" = "Windows_NT" ]; then \
+		echo "Error: Windows is not supported!"; \
+		exit 1; \
+	fi
+
+	@echo "Success!"
 
 copy_grub_cfg:
 	cp grub.cfg $(BOOTDIR)/grub/grub.cfg
