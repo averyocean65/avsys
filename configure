@@ -2,9 +2,19 @@
 
 PACKAGES="gcc nasm xorriso qemu mtools grub-common"
 
-# Function to check if a package is installed
-check_package() {
-    if command -v $1 >/dev/null 2>&1; then
+# Function to check if a package is installed on Arch Linux
+check_package_arch() {
+    if pacman -Qi $1 >/dev/null 2>&1; then
+        echo "$1 is already installed."
+    else
+        echo "$1 is not installed. Installing..."
+        sudo pacman -Sy --noconfirm $1
+    fi
+}
+
+# Function to check if a package is installed on Ubuntu
+check_package_ubuntu() {
+    if dpkg -s $1 >/dev/null 2>&1; then
         echo "$1 is already installed."
     else
         echo "$1 is not installed. Installing..."
@@ -13,9 +23,25 @@ check_package() {
     fi
 }
 
-# Check if all packages are installed
+# Check if all packages are installed based on the OS
+OS=$(uname -s)
 for package in $PACKAGES; do
-    check_package $package
+    case $OS in
+        Linux)
+            if [ -f "/etc/arch-release" ]; then
+                check_package_arch $package
+            elif [ -f "/etc/lsb-release" ] || [ -f "/etc/debian_version" ]; then
+                check_package_ubuntu $package
+            else
+                echo "Unsupported Linux distribution. Please install $package manually."
+                exit 1
+            fi
+            ;;
+        *)
+            echo "Unsupported operating system. Please install $package manually."
+            exit 1
+            ;;
+    esac
 done
 
 echo "All required packages are installed. Ready to build!"
