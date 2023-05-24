@@ -1,0 +1,20 @@
+#!/bin/sh
+
+PACKAGES="gcc nasm xorriso qemu mtools grub-common"
+
+# Function to check if a package is installed
+check_package() {
+    if command -v $1 >/dev/null 2>&1; then
+        echo "$1 is already installed."
+    else
+        echo "$1 is not installed. Please install it."
+        exit 1
+    fi
+}
+
+# Check if all packages are installed
+for package in $PACKAGES; do
+    check_package $package
+done
+
+echo "All required packages are installed. Ready to build!"
