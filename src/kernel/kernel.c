@@ -18,21 +18,21 @@ void kernel_early_main() {
     write_serial_str("SERIAL INITIALIZED\r\n", SERIAL_PORT);
 
     /* Get Monitor Color Type */
-    write_serial_str("Color Type: ");
+    write_serial_str("Color Type: ", SERIAL_PORT);
     enum video_type type = get_bios_area_video_type();
     
     switch (type)
     {
         case VIDEO_TYPE_MONOCHROME:
-            write_serial_str("Monochrome\r\n");
+            write_serial_str("Monochrome\r\n", SERIAL_PORT);
             break;
 
         case VIDEO_TYPE_COLOR:
-            write_serial_str("Color\r\n");
+            write_serial_str("Color\r\n", SERIAL_PORT);
             break;
         
         default:
-            write_serial_str("Unknown\r\n");
+            write_serial_str("Unknown\r\n", SERIAL_PORT);
             break;
     }
 }
