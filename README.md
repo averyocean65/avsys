@@ -7,7 +7,7 @@ My first (actual) Operating System
 - [xorriso](https://www.gnu.org/software/xorriso/)
 - [QEMU](https://www.qemu.org/)
 - [mtools](https://www.gnu.org/software/mtools/)
-- GNU Grub CLI toolchain
+- grub-common
 
 ## Installing and building
 1. Make sure you have a [GCC](https://gcc.gnu.org/) set up.
