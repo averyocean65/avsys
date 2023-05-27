@@ -62,11 +62,10 @@
 - grub-common
 
 ## Installation und Kompilation
-1. Mach sicher, dass du den [GCC](https://gcc.gnu.org/) Kompilierer hast.
-2. Stelle sicher, dass ein [Cross Compiler](https://wiki.osdev.org/GCC_Cross-Compiler) in deinem PATH ist.
-3. ``make``
-4. Falls die Kompilation gelingt, ``make run``
-5. Viel spaß!
+1. Stelle sicher, dass ein [Cross Compiler](https://wiki.osdev.org/GCC_Cross-Compiler) in deinem PATH ist.
+2. ``make``
+3. Falls die Kompilation gelingt, ``make run``
+4. Viel spaß!
 
 ## Beitragen
 Falls die Kompilation nicht funktioniert, erstelle ein [neues Issue](https://github.com/averyocean65/avsys/issues/new)!

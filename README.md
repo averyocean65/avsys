@@ -63,10 +63,9 @@
 
 ## Installing and building
 1. Make sure you have a [GCC](https://gcc.gnu.org/) set up.
-2. Make sure the [Cross Compiler](https://wiki.osdev.org/GCC_Cross-Compiler) is in your PATH.
-3. ``make``
-4. If the compilation succeeds, ``make run``
-5. Enjoy!
+2. ``make``
+3. If the compilation succeeds, ``make run``
+4. Enjoy!
 
 ## Contributing
 If the compilation doesn't succeed, feel free to [open an issue](https://github.com/averyocean65/avsys/issues/new)!
