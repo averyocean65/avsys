@@ -14,10 +14,27 @@ void kernel_early_main() {
     if(serial == 1) {
         panic("Failed to initialize serial at I/O (COM1)");
     }
-
+    
     write_serial_str("SERIAL INITIALIZED\r\n", SERIAL_PORT);
 
-    __asm__ __volatile__("sti");
+    /* Get Monitor Color Type */
+    write_serial_str("Color Type: ", SERIAL_PORT);
+    enum video_type type = get_bios_area_video_type();
+    
+    switch (type)
+    {
+        case VIDEO_TYPE_MONOCHROME:
+            write_serial_str("Monochrome\r\n", SERIAL_PORT);
+            break;
+
+        case VIDEO_TYPE_COLOR:
+            write_serial_str("Color\r\n", SERIAL_PORT);
+            break;
+        
+        default:
+            write_serial_str("Unknown\r\n", SERIAL_PORT);
+            break;
+    }
 }
 
 void kernel_main() {
