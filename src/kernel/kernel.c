@@ -16,6 +16,8 @@ void kernel_early_main() {
     }
 
     write_serial_str("SERIAL INITIALIZED\r\n", SERIAL_PORT);
+
+    __asm__ __volatile__("sti");
 }
 
 void kernel_main() {
@@ -43,7 +45,8 @@ void kernel_end() {
 
     notify_func_entry(func_name, SERIAL_PORT);
 
-    /* Code */
+    /* Disable Interrupts */
+    __asm__ __volatile__("cli");
 
     notify_func_exit(func_name, SERIAL_PORT);
 }
