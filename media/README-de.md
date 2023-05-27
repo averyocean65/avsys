@@ -6,7 +6,7 @@
   <br>
 </h1>
 
-<h4 align="center">My first Operating System.</a></h4>
+<h4 align="center">Mein erstes Betriebssystem</a></h4>
 
 <p align="center">
   <a href="https://github.com/averyocean65/avsys/actions"
@@ -23,9 +23,9 @@
 
 
 <p align="center">
-  <a href="#prerequisites">Prerequisites</a> •
+  <a href="#voraussetzungen">Voraussetzungen</a> •
   <a href="#installing-and-building">Installation</a> •
-  <a href="#contributing">Contributing</a>
+  <a href="#beitragen">Beitragen</a>
 </p>
 
 <p align="center">
@@ -53,7 +53,7 @@
   /></a>
 </p>
 
-## Prerequisites
+## Voraussetzungen
 - [GNU Compiler Collection](https://gcc.gnu.org/)
 - [NASM](https://www.nasm.us/)
 - [xorriso](https://www.gnu.org/software/xorriso/)
@@ -61,12 +61,12 @@
 - [mtools](https://www.gnu.org/software/mtools/)
 - grub-common
 
-## Installing and building
-1. Make sure you have a [GCC](https://gcc.gnu.org/) set up.
-2. Make sure the [Cross Compiler](https://wiki.osdev.org/GCC_Cross-Compiler) is in your PATH.
+## Installation und Kompilation
+1. Mach sicher, dass du den [GCC](https://gcc.gnu.org/) Kompilierer hast.
+2. Stelle sicher, dass ein [Cross Compiler](https://wiki.osdev.org/GCC_Cross-Compiler) in deinem PATH ist.
 3. ``make``
-4. If the compilation succeeds, ``make run``
-5. Enjoy!
+4. Falls die Kompilation gelingt, ``make run``
+5. Viel spaß!
 
 ## Contributing
-If the compilation doesn't succeed, feel free to [open an issue](https://github.com/averyocean65/avsys/issues/new)!
+Falls die Kompilation nicht funktioniert, erstelle ein [neues Issue](https://github.com/averyocean65/avsys/issues/new)!

@@ -29,19 +29,27 @@
 </p>
 
 <p align="center">
-  <a href="../README.md"
+  <a href="README.md"
     ><img
       height="20"
-      src="flag-us.png"
+      src="media/flag-us.png"
       alt="English"
   /></a>
   &nbsp;
   <a
-    href="README-ru.md"
+    href="media/README-ru.md"
     ><img
       height="20"
-      src="flag-ru.png"
+      src="media/flag-ru.png"
       alt="Русский"
+  /></a>
+  &nbsp;
+  <a
+    href="media/README-de.md"
+    ><img
+      height="20"
+      src="media/flag-de.png"
+      alt="Deutsch"
   /></a>
 </p>
 
