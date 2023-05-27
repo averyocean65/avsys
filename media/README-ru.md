@@ -32,23 +32,23 @@
   <a href="README.md"
     ><img
       height="20"
-      src="media/flag-us.png"
+      src="flag-us.png"
       alt="English"
   /></a>
   &nbsp;
   <a
-    href="media/README-ru.md"
+    href="README-ru.md"
     ><img
       height="20"
-      src="media/flag-ru.png"
+      src="flag-ru.png"
       alt="Русский"
   /></a>
   &nbsp;
   <a
-    href="media/README-de.md"
+    href="README-de.md"
     ><img
       height="20"
-      src="media/flag-de.png"
+      src="flag-de.png"
       alt="Deutsch"
   /></a>
 </p>
