@@ -1,6 +1,6 @@
 <h1 align="center">
   <br>
-  <a><img src="media/logo.png" alt="avsys" width="400"></a>
+  <a><img src="logo.png" alt="avsys" width="400"></a>
   <br>
   avsys
   <br>
